@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { GlobalNavBar } from "@/components/molecules/nav-bar";
+import { TanstackProvider } from "@/client/providers/tanstack-provider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -17,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(inter.className)}>{children}</body>
+      <body className={cn(inter.className)}>
+        <TanstackProvider>
+          <GlobalNavBar />
+          {children}
+        </TanstackProvider>
+      </body>
     </html>
   );
 }
