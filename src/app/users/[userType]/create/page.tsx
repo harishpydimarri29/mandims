@@ -2,8 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { convertEnglishToTelugu } from "@/lib/english.to.telugu";
 import { CreateUserPayload, createUserPayloadSchema } from "@/types/payloads";
-import { MandiUser } from "@/types/users";
+import { MandiUser } from "@/types/entities";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -26,9 +27,12 @@ export default function CreatePage({
     },
     resolver: zodResolver(createUserPayloadSchema),
   });
-  const onSubmit: SubmitHandler<CreateUserPayload> = (data) => {
+  const onSubmit: SubmitHandler<CreateUserPayload> = async (data) => {
     try {
       console.log("Submitted Create User Payload : ", data);
+      convertEnglishToTelugu(data.name).then((data) => {
+        console.log("Converted Name : ", data);
+      })
     } catch (error) {
       console.log("Error while submitting the form : ", error);
     }
@@ -43,13 +47,13 @@ export default function CreatePage({
           <div className="w-full">
             <Input {...register("name")} placeholder="Full Name" />
             {errors.name?.message && (
-              <div className="text-red-500 pt-1">{errors.name.message}</div>
+              <div className="text-red-500 pt-1 text-sm">{errors.name.message}</div>
             )}
           </div>
           <div className="w-full">
             <Input {...register("phoneNo")} placeholder="Phone Number" />
             {errors.phoneNo?.message && (
-              <div className="text-red-500 pt-1">
+              <div className="text-red-500 pt-1 text-sm">
                 {errors.phoneNo.message?.toString()}
               </div>
             )}

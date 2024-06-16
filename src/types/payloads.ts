@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { mandiUserSchema } from './users'
+import { mandiUserSchema } from './entities'
 
 export const createUserPayloadSchema = z.object({
     userType: mandiUserSchema,
@@ -10,7 +10,7 @@ export const createUserPayloadSchema = z.object({
     merchant: z.object({
         roomNo: z.string().optional(),
         items: z.string().optional(),
-    }),
+    }).optional(),
     workType: z.string().optional(),
 })
 

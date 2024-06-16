@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { MandiUser } from "@/types/users";
+import { MandiUser } from "@/types/entities";
 import Link from "next/link";
 
 export default function UserPage({
