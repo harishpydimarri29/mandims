@@ -1,0 +1,27 @@
+{
+  "name": "Mandi App",
+  "short_name": "Mandi",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "orientation": "any",
+  "scope": "/",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "/icons/hanuman-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/hanuman-256.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    },
+    {
+      "src": "/icons/hanuman-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

@@ -1,7 +1,7 @@
-import { ComboboxDemo } from "@/components/molecules/combobox";
-import { OrderBond } from "@/components/molecules/order-bond";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import {ComboboxSearchCustomer} from "@/components/molecules/combobox-search-customer";
+import {OrderBond} from "@/components/molecules/order-bond";
+import {Button} from "@/components/ui/button";
+import {Separator} from "@/components/ui/separator";
 import {
   Table,
   TableBody,
@@ -11,7 +11,18 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { CirclePlus, Plus, Printer } from "lucide-react";
+import {CirclePlus, Plus, Printer} from "lucide-react";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/ui/sheet";
+import {ItemsList} from "@/components/molecules/items-list";
+
 const invoices = [
   {
     invoice: "INV001",
@@ -62,25 +73,37 @@ export default function OrderCreatePage() {
   const mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
   const yyyy = date.getFullYear();
   const billNo = Math.floor(Math.random() * 10000);
+
   return (
     <main>
       <div className="flex flex-col items-center gap-3 my-2">
         <b className="text-xl">ORDER</b>
-        <Separator />
+        <Separator/>
         <div>
           Customer Name :{" "}
           <b>
-            <ComboboxDemo />
+            <ComboboxSearchCustomer/>
           </b>
         </div>
       </div>
-      <Separator />
+      <Separator/>
       <div className="flex justify-end mr-2 my-2 print:hidden gap-1">
-        <Button variant="secondary" size="sm">
-          <Plus size={20} /> Item
-        </Button>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="secondary" size="sm">
+              <Plus size={20}/> Item
+            </Button>
+          </SheetTrigger>
+
+          <SheetContent side="right" className="overflow-scroll">
+            <SheetHeader className="mb-2">
+              <SheetTitle>Choose Items</SheetTitle>
+            </SheetHeader>
+            <ItemsList isInSideBar={true}/>
+          </SheetContent>
+        </Sheet>
       </div>
-      <Separator />
+      <Separator/>
       <Table>
         <TableHeader className="bg-slate-100">
           <TableRow>
@@ -112,7 +135,7 @@ export default function OrderCreatePage() {
           </TableRow>
           <TableRow>
             <TableCell colSpan={2} className="text-right">
-              Cooli
+              Charges
             </TableCell>
             <TableCell>X 5</TableCell>
             <TableCell className="text-right">70.00</TableCell>
@@ -129,7 +152,7 @@ export default function OrderCreatePage() {
       </Table>
       <div className="m-2 flex justify-between">
         <Button size="sm" variant="secondary">
-          <Printer /> &nbsp; Print
+          <Printer/> &nbsp; Print
         </Button>
         <Button size="sm">Create Bill</Button>
       </div>

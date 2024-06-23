@@ -1,9 +1,10 @@
+"use client";
 import { WideButton } from "@/components/molecules/wide-button";
 import { Button } from "@/components/ui/button";
 import { BicepsFlexed, Handshake, PlusIcon, UserRound } from "lucide-react";
 import Link from "next/link";
 
-const CreateLink = (props: { type: string; }) => {
+const CreateLink = (props: { type: string }) => {
   return (
     <Link href={`/users/${props.type}/create`}>
       <Button variant="outline" size="icon">
